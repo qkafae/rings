@@ -1,0 +1,19 @@
+name: Rings
+version: '0.1'
+main: me.kafae.rings.Main
+api-version: '1.21'
+load: STARTUP
+authors: [ kafae ]
+description: Ringingnignigngingi
+commands:
+  ring:
+    description: Gives a ring to the player
+    usage: /ring <ring>
+    permission: op
+  gem:
+    description: Gives a gem to the player
+    usage: /gem <gem>
+    permission: op
+  ability:
+    description: Use ring ability
+    usage: /ability <ability>
