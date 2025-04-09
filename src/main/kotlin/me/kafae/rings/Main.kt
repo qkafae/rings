@@ -24,16 +24,21 @@ class Main : JavaPlugin() {
     companion object {
         val dataMap: MutableMap<String, PlayerData> = mutableMapOf()
         lateinit var log: Logger
+        lateinit var self: JavaPlugin
         val aeroguardList: MutableList<Player> = mutableListOf()
+        val surfList: MutableList<Player> = mutableListOf()
     }
 
     override fun onEnable() {
+        self = this
         log = this.logger
 
         logger.info("Setting up events & listeners")
         server.pluginManager.registerEvents(PJoinEvent(), this)
         server.pluginManager.registerEvents(PLeaveEvent(), this)
         server.pluginManager.registerEvents(FallDamageEvent(), this)
+        server.pluginManager.registerEvents(PlayerDismountEvent(), this)
+        server.pluginManager.registerEvents(EntityDamagePlayerEvent(), this)
         logger.info("Finished setting up events & listeners")
 
         logger.info("Rolling in all commands")

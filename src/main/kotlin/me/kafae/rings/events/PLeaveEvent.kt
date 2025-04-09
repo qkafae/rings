@@ -20,12 +20,4 @@ class PLeaveEvent: Listener {
         ds.save(uid)
         Main.log.info("Saved data for ${p.name}")
     }
-
-    @EventHandler(priority = EventPriority.NORMAL)
-    private fun onPlayerKick(e: PlayerKickEvent) {
-        val p: Player = e.player
-        val uid: String = p.uniqueId.toString()
-        ds.save(uid)
-    }
-
 }
