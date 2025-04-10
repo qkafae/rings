@@ -2,34 +2,38 @@ package me.kafae.rings.abilities
 
 import me.kafae.rings.Main
 import me.kafae.rings.bin.formatTime
-import me.kafae.rings.bin.updateCooldown1
+import me.kafae.rings.bin.updateCooldown2
 import org.bukkit.Color
 import org.bukkit.Particle
 import org.bukkit.entity.Player
+import org.bukkit.potion.PotionEffect
+import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
 import kotlin.math.cos
 import kotlin.math.sin
 
 class Aeroguard: ActiveAbility() {
 
-    override val cooldown: Int = 5 // 120
+    override val cooldown: Int = 150
     override val icon: String = "§b⛊"
     override val displayName: String = "§b§l$icon ᴀᴇʀᴏɢᴜᴀʀᴅ"
     override val desc: Array<String> = arrayOf(
         "§7creates a wind barrier around the",
         "§7player that deflects all incoming",
-        "§7damage back to its source.",
+        "§7damage back to its source. The player",
+        "§7will also glow",
         "§7 > Cooldown: ${formatTime(cooldown)}",
         "§7 > Duration: 15s"
     )
 
     override fun onUse(p: Player) {
         p.sendMessage("§fUsed ability $displayName§f!")
-        updateCooldown1(p)
+        updateCooldown2(p)
         Main.aeroguardList.addLast(p)
+        p.addPotionEffect(PotionEffect(PotionEffectType.GLOWING, 300, 1, false, false))
 
         object: BukkitRunnable() {
-            val dura: Long = ((15 + Main.dataMap[p.uniqueId.toString()]!!.pristine) * 20).toLong()
+            val dura: Long = 300L
             val particle: Particle = Particle.DUST_COLOR_TRANSITION
             val size: Float = 2.5f
             val r: Double = 1.0

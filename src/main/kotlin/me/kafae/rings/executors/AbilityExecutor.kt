@@ -20,7 +20,7 @@ class AbilityExecutor: CommandExecutor {
             when (args[0]) {
                 "x" -> {
                     val r: Ring? = offHandCheck(p)
-                    if (r == null || r == Module()) {
+                    if (r == null || r is Module) {
                         p.sendMessage("§4No ability can be used")
                         return true
                     }
@@ -32,7 +32,7 @@ class AbilityExecutor: CommandExecutor {
                 }
                 "y" -> {
                     val r: Ring? = offHandCheck(p)
-                    if (r == null) {
+                    if (r == null || r is Module) {
                         p.sendMessage("§4No ability can be used")
                         return true
                     }

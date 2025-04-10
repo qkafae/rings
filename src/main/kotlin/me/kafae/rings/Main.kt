@@ -37,7 +37,6 @@ class Main : JavaPlugin() {
         server.pluginManager.registerEvents(PJoinEvent(), this)
         server.pluginManager.registerEvents(PLeaveEvent(), this)
         server.pluginManager.registerEvents(FallDamageEvent(), this)
-        server.pluginManager.registerEvents(PlayerDismountEvent(), this)
         server.pluginManager.registerEvents(EntityDamagePlayerEvent(), this)
         logger.info("Finished setting up events & listeners")
 
