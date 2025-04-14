@@ -7,6 +7,7 @@ import org.bukkit.Color
 import org.bukkit.Particle
 import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitRunnable
+import kotlin.math.abs
 
 class Surf: ActiveAbility() {
 
@@ -24,13 +25,17 @@ class Surf: ActiveAbility() {
         updateCooldown1(p)
 
         p.velocity = p.location.direction.normalize().multiply(4)
-        if (p.isOnGround) {
-            p.velocity.y = 0.5
+        p.velocity.y = if (p.velocity.y == 0.0) {
+            0.5
+        } else {
+            abs(p.velocity.y * 1.5)
         }
+
+        var dura: Int = 20
 
         object: BukkitRunnable() {
             override fun run() {
-                if (p.isOnGround || p.isInWater) {
+                if (dura <= 0) {
                     this.cancel()
                     return
                 }
@@ -40,11 +45,12 @@ class Surf: ActiveAbility() {
                 p.world.spawnParticle(
                     Particle.DUST_COLOR_TRANSITION,
                     p.location.clone().add(0.0, 0.2, 0.0),
-                    6,
+                    10,
                     0.2, 0.0, 0.2,
                     0.0,
                     opt
                 )
+                dura--
             }
         }.runTaskTimer(Main.self, 0L, 1L)
     }

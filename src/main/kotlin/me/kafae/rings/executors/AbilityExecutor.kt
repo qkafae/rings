@@ -1,7 +1,7 @@
 package me.kafae.rings.executors
 
 import me.kafae.rings.Main
-import me.kafae.rings.bin.offHandCheck
+import me.kafae.rings.bin.ringCheck
 import me.kafae.rings.rings.Module
 import me.kafae.rings.rings.Ring
 import org.bukkit.command.Command
@@ -19,7 +19,7 @@ class AbilityExecutor: CommandExecutor {
         return if (args.isNotEmpty()) {
             when (args[0]) {
                 "x" -> {
-                    val r: Ring? = offHandCheck(p)
+                    val r: Ring? = ringCheck(p)
                     if (r == null || r is Module) {
                         p.sendMessage("§4No ability can be used")
                         return true
@@ -31,7 +31,7 @@ class AbilityExecutor: CommandExecutor {
                     r.corrAbility1!!.onUse(p)
                 }
                 "y" -> {
-                    val r: Ring? = offHandCheck(p)
+                    val r: Ring? = ringCheck(p)
                     if (r == null || r is Module) {
                         p.sendMessage("§4No ability can be used")
                         return true

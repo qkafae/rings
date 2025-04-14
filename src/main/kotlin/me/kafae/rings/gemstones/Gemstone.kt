@@ -5,6 +5,7 @@ import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.ShapedRecipe
 import org.bukkit.inventory.meta.ItemMeta
 
 abstract class Gemstone {
@@ -13,6 +14,7 @@ abstract class Gemstone {
     abstract val displayName: String
     abstract val customModel: NamespacedKey
     abstract val corrRing: Ring
+    open val recipe: ShapedRecipe? = null
     open val baseItem: Material = Material.PAPER
     open val lore: MutableList<String> = mutableListOf("")
 
